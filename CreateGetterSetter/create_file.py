@@ -69,11 +69,11 @@ def create_cpp_file(output_name_obj, variable_list):
             line_data = "void " + output_name_obj.class_name \
                         + "::" + " set" + variable_data.variable_name.capitalize() \
                         + "(" + variable_data.variable_type \
-                        + " in" + variable_data.variable_name.capitalize() + ");\n"
+                        + " in" + variable_data.variable_name.capitalize() + ") {\n"
             file_obj.write(line_data)
 
             line_data = "    " + variable_data.variable_name \
-                        + " = in" + variable_data.variable_name.capitalize() + ";\n"
+                        + " = std::move(in" + variable_data.variable_name.capitalize() + ");\n"
             file_obj.write(line_data)
 
             line_data = "}\n"
