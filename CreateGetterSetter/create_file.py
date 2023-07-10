@@ -52,7 +52,7 @@ def create_cpp_file(output_name_obj, variable_list):
         for variable_data in variable_list:
 
             line_data = variable_data.variable_type + " " + output_name_obj.class_name \
-                        + "::" + " get" + variable_data.variable_name.capitalize() + "() {\n"
+                        + "::" + "get" + variable_data.variable_name.capitalize() + "() {\n"
             file_obj.write(line_data)
 
             line_data = "    return " + variable_data.variable_name + ";\n"
@@ -67,13 +67,18 @@ def create_cpp_file(output_name_obj, variable_list):
         for variable_data in variable_list:
 
             line_data = "void " + output_name_obj.class_name \
-                        + "::" + " set" + variable_data.variable_name.capitalize() \
+                        + "::" + "set" + variable_data.variable_name.capitalize() \
                         + "(" + variable_data.variable_type \
                         + " in" + variable_data.variable_name.capitalize() + ") {\n"
             file_obj.write(line_data)
 
-            line_data = "    " + variable_data.variable_name \
-                        + " = std::move(in" + variable_data.variable_name.capitalize() + ");\n"
+            if variable_data.variable_type == "std::string":
+                line_data = "    " + variable_data.variable_name \
+                            + " = std::move(in" + variable_data.variable_name.capitalize() + ");\n"
+            else:
+                line_data = "    " + variable_data.variable_name \
+                            + " = in" + variable_data.variable_name.capitalize() + ";\n"
+
             file_obj.write(line_data)
 
             line_data = "}\n"

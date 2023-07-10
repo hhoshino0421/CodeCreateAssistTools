@@ -28,10 +28,7 @@ def input_file_data(input_file_name):
 
                 split_len = len(split_line_data)
 
-                if split_len <= 1:
-                    # 処理できないデータ
-                    pass
-                else:
+                if split_len == 2:
                     # 処理可能なデータ
                     input_data_obj = InputData()
                     input_data_obj.variable_type = split_line_data[0]
@@ -39,11 +36,9 @@ def input_file_data(input_file_name):
 
                     variable_list.append(input_data_obj)
 
-                    # variable_name = split_line_data[1].strip(";")
-                    #
-                    # # # for debug
-                    # # print("type,name:", split_line_data[0], variable_name)
-                    # #
-                    # # variable_list.append((split_line_data[0], variable_name))
+                else:
+                    # 処理できないデータ
+                    print("unprocessed data:", split_line_data)
+                    pass
 
     return variable_list, 0
