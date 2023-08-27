@@ -5,6 +5,7 @@ from output_name import OutputName
 from create_file import *
 from input_file_data import *
 
+# 使い方
 def usage():
 
     print("")
