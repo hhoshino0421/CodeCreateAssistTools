@@ -16,6 +16,7 @@ def usage():
     print("")
 
 
+# 入力値チェック
 def validate(argv):
 
     argc = len(argv)
